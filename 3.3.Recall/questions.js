@@ -160,58 +160,129 @@ let convertArrayToObject = (array) => {
 }
 
 let getAllLetters = (array) => {
-
-    return 'Write your method here';
+    let letters="";
+    for (let elem of array) {
+        letters=letters+elem;
+    }
+    return [...new Set(letters.split(''))].sort();
 }
 
 let swapKeysAndValues = (object) => {
-    return 'Write your method here';
+    let obj = {};
+    Object.keys(object).forEach(key => {
+        obj[object[key]] = key;
+    });
+    return obj;
 }
 
 let sumKeysAndValues = (object) => {
-    return 'Write your method here';
+    let sum = 0;
+    Object.keys(object).forEach(key => {
+        sum =sum + Number(object[key]) + Number(key);
+    });
+    return sum
 }
 
 let removeCapitals = (string) => {
-    return 'Write your method here';
+    return string.replace(/[A-Z]/g,"");
 }
 
 let roundUp = (number) => {
-    return 'Write your method here';
+    return Math.ceil(number);
 }
 
 let formatDateNicely = (date) => {
-    return 'Write your method here';
+    let array = date.toString().split('') ;
+    let mois=array[4]+array[5]+array[6];
+    if (mois==="Jan") mois="01";
+    if (mois==="Feb") mois="02";
+    if (mois==="Mar") mois="03";
+    if (mois==="Apr") mois="04";
+    if (mois==="May") mois="05";
+    if (mois==="Jun") mois="06";
+    if (mois==="Jul") mois="07";
+    if (mois==="Aug") mois="08";
+    if (mois==="Sep") mois="09";
+    if (mois==="Oct") mois="10";
+    if (mois==="Nov") mois="11";
+    if (mois==="Dec") mois="12";
+    return array[8] + array[9] + "/" + mois + "/" + array[11] + array[12] + array[13] + array[14];
 }
 
 let getDomainName = (string) => {
-    return 'Write your method here';
+    let arr=string.split("@");
+    let arr2=arr[1].split(".")
+    let result="";
+    for (let i=0; i<arr2.length-1;i++) {
+        result=result+arr2[i];
+        if (i<arr2.length-2) result=result+".";
+    }
+    return result;
 }
 
 let titleize = (string) => {
-    return 'Write your method here';
+    let array=string.split(" ");
+    let preview="";
+    let newString="";
+    for (let elem of array) {
+        if (preview==="") { newString=elem[0].toUpperCase()+elem.substring(1) + " "; preview=newString; }
+        else if (preview===".") { newString=newString+elem[0].toUpperCase()+elem.substring(1) + " "; preview=newString; }
+        else {
+            if (elem==="the" || elem==="and") { newString=newString + elem + " "; preview=elem; }
+            else {
+                newString=newString+elem[0].toUpperCase()+elem.substring(1) + " "; preview=newString;
+                if (elem.substring(elem.length-1)===".") preview=".";
+            }
+        }
+    }
+    newString=newString.substring(0, newString.length - 1);
+    return newString;
 }
 
 let checkForSpecialCharacters = (string) => {
-    return 'Write your method here';
+    let regex = /^[A-Za-z0-9 ]+$/;
+    let nospecial = regex.test(string);
+    return !nospecial;
 }
 
 let squareRoot = (number) => {
-    return 'Write your method here';
+    return Math.sqrt(number);
 }
 
 let factorial = (number) => {
-    return 'Write your method here';
+    if(number == 0 || number == 1){
+        return 1;
+    }else{
+        return number * factorial(number-1);
+    }
 }
 
 let findAnagrams = (string) => {
-    return 'Write your method here';
+let newString=[];
+    if (string.length===2) {
+        newString.push(string[0]+string[1]);
+        newString.push(string[1]+string[0]);
+    }
+    if (string.length===3) {
+        newString.push(string[0]+string[1]+string[2]);
+        newString.push(string[0]+string[2]+string[1]);
+        newString.push(string[1]+string[0]+string[2]);
+        newString.push(string[1]+string[2]+string[0]);
+        newString.push(string[2]+string[0]+string[1]);
+        newString.push(string[2]+string[1]+string[0]);
+    }
+
+    return newString.sort();
 }
 
 let convertToCelsius = (number) => {
-    return 'Write your method here';
+    return Math.ceil((5/9) * (number - 32));
 }
 
 let letterPosition = (array) => {
-    return 'Write your method here';
+    let result = [];
+    for (let elem of array) {
+        result.push(elem.toLowerCase().charCodeAt(0) - 96);
+    }
+    return result;
 }
